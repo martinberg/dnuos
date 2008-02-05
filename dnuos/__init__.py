@@ -112,6 +112,12 @@ def setup_renderer(output_module, format_string, fields, options):
 
 def main(argv=None):
     """Main entry point"""
+
+    import locale
+    try:
+        locale.setlocale(locale.LC_ALL, '')
+    except locale.Error:
+        pass
     
     if argv is None:
         argv = sys.argv
@@ -349,7 +355,7 @@ def add_empty(dir_pairs):
     oldpath = []
     for adir, root in dir_pairs:
         root = os.path.splitdrive(root)[1]
-        path = adir.path[len(root) + 1:].split(os.path.sep)
+        path = adir.path[len(root):].split(os.path.sep)[1:]
         start = equal_elements(path, oldpath)
         for depth in range(start, len(path) - 1):
             emptypath = os.path.join(root, *path[:depth + 1])
