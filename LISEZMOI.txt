@@ -1,0 +1,205 @@
+Dnuos : Faire une liste !
+=========================
+
+Dnuos est un programme de terminal qui fait des listes des collections
+de la musique, par la structure des dossiers.
+
+Par exemple, une liste pourrait ressembler à ceci :
+
+    Album/Artiste                      | Taill | Type | Qualité
+    ===========================================================
+    Ambient                            |       |      |
+        Alva Noto                      |       |      |
+            2001 - Transform           | 70,9M | MP3  | -V2
+            2004 - Transrapid          | 30,2M | MP3  | -aps
+            2005 - Transspray          | 31,7M | MP3  | -aps
+            2005 - Transvision         | 32,3M | MP3  | -aps
+        Alva Noto and Ryuichi Sakamoto |       |      |
+            2002 - Vrioon              | 72,6M | MP3  | -aps
+            2005 - Insen               | 99,1M | MP3  | 320 C
+            2006 - Revep               | 27,9M | MP3  | -V2n
+
+Le format de la liste est complètement personnalisable et peut être texte
+brut ou HTML.
+
+Dnuos s'appuie MP3, AAC, Musepack, Ogg Vorbis, et FLAC. Détection du profil
+de qualité est appuyé aussi, y compris l'information du
+[LAME quality preset][].
+
+Informations sur les fichiers audio sont enregistrées sur le disque après
+une liste est initialement faite, ce qui accélère faire de prochaines listes.
+Seulement les fichiers audio et les dossiers qui ont étés modifiés depuis
+la dernière liste a été faite.
+
+Dnuos est basé sur le code d'[Oidua][]. Oidua peut faire des listes
+similaires, mais c'est trop vieux et n'est plus maintenu.
+
+[LAME quality preset]: http://wiki.hydrogenaudio.org/index.php?title=Lame#Recommended_encoder_settings
+[Oidua]: http://oidua.suxbad.com/
+
+
+Télécharger
+-----------
+
+Les versions peuvent être trouvées à <http://bitheap.org/dnuos/files/>.
+
+
+Installation/Usage
+------------------
+
+Exécutez `dnuos --help` pour information détaillée sur toutes les options.
+
+### Linux, Mac OS X, Unix
+
+Extrayez l'archive et exécutez `setup.py` pour l'installer::
+
+    tar zxvf dnuos-*.tar.gz
+    cd dnuos-*
+    sudo python setup.py install
+
+Cela installera un script de terminal nommé `dnuos` dans
+`/usr/local/bin`. (Sous Mac OS X 10.4 et les anciennes versions, il peut
+être mis dans `/Library/Frameworks/Python.framework/Versions/Current/bin`.)
+
+Après installation, ouvrez votre terminal préféré et exécutez `dnuos`.
+Sur Mac OS X, *Terminal* serait un bon choix (situé dans
+`/Applications//Utilities`).
+
+
+### Windows
+
+Il n'y a pas d'installation. Simplement extrayez le fichier zip où vous
+souhaitez l'installer. Vous pouvez exécuter l'application à la ligne de
+commande avec `dnuos.exe`.
+
+Après vous avez extrait Dnuos, appuyez simultanément sur les touches Windows
+et R pour ouvrir le dialogue *Run*. Tapez *cmd* et appuyez enter pour
+lancer la ligne de commande. Ensuite tapez la lettre de disque où
+l'exécutable est placé et `cd` au dossier avec l'exécutable. Ici,
+simplement exécutez `dnuos.exe`.
+
+
+### Front-ends Graphiques
+
+Si vous détestez la ligne de commande, vous pouvez utiliser l'un des
+front-ends graphiques suivants plutôt :
+
+* [dnuOSX][] - Un front-end natif pour Mac OS X.
+* [Guidua][] - Un front-end graphique pour Windows.
+* [QtOIDUA][] - Un front-end graphique pour Linux et Mac OS X.
+  (Note : Les versions 0.08 et les anciennes versions ont un bogue qui
+  empêche l'opération QtOIDUA avec Dnuos 1.0.)
+
+[dnuOSX]: http://www.facepwn.com/MacRequest/dnuOSX.html
+[Guidua]: http://oidua.suxbad.com/setup_guidua_0.16.exe
+[QtOIDUA]: http://www.spoonfedmonkey.com/software/qtoidua/
+
+
+Quoi de Neuf
+------------
+
+### Version 1.0.8 (16 jui. 2008
+
+* Corrigé des plantages sous les environnements Unix avec les noms de
+  dossiers qui ont des caractères qui ne sont pas compatibles avec
+  l'encodage du système de fichiers.
+
+### Version 1.0.7 (3 jui. 2008)
+
+* Ajouté les améliorations de portabilité du Makefile à `setup.py`.
+  `make` n'est pas toujours disponible, donc `setup.py` est maintenant
+  recommandé.
+
+### Version 1.0.6 (31 mai 2008)
+
+* Changé le lieu du cache sous Linux de `~/.dnuos` à `~/.cache/dnuos`
+  (`$XDG_CACHE_HOME/dnuos`).
+* Amélioré la portabilité du Makefile. C'est maintenant le moyen
+  recommandé pour installer Dnuos.
+* Corrigé l'information d'album et d'artiste pas étant rempli avec
+  les fichiers FLAC.
+* Corrigé des plantages possibles d'UTF-8 avec des noms de fichiers qui
+  ne sont pas encodés avec l'encodage du système de fichiers.
+
+### Version 1.0.5 (5 mai 2008)
+
+* Corrigé des plantages possibles du passage à l'UTF-8 du format du cache.
+
+### Version 1.0.4 (4 mai 2008)
+
+* Fortement amélioré l'appui pour les noms de fichiers et dossiers avec
+  des caractères Unicode sous Windows. Dnuos devrait maintenant être
+  capable de scanner des dossiers et ouvrir des fichiers avec des
+  caractères Unicode dans leurs noms, et des caractères Unicode
+  peuvent maintenant être utilisés dans des arguments de ligne de
+  commande.
+* Amélioré l'appui du format du cache entre les versions de Python.
+
+### Version 1.0.3 (27 avr. 2008)
+
+* Corrigé un plantage avec des variables locales mal formés
+  d'environnement (par ex. `LANG`, `LC_ALL`, etc.)
+* Corrigé la sortie incorrecte lorsque scanner des dossiers racines sous
+  Windows (par ex. `C:\`).
+
+### Version 1.0.2 (29 mar. 2008)
+
+* Corrigé `-V`/`--version` ne fonctionne pas avec la sortie normale.
+
+### Version 1.0.1 (24 mar. 2008)
+
+* Amélioré la sortie des tags ID3 avec des caractères null.
+* Corrigé la compatilibité Python 2.3.
+* Corrigé un plantage possible avec le cache sous certains
+  environnements Mac OS X.
+
+### Version 1.0 (20 mar. 2008)
+
+* Ajouté le cachage des métadonnées audio.
+* Ajouté une traduction française et l'appui pour le formatage des nombres par
+  les paramètres régionaux.
+* Ajouté `-L`/`--list-files` pour lister les fichiers individuels dans des
+  dossiers. Néanmoins, l'information des fichiers individuels n'est pas caché.
+* Ajouté `-u`/`--unknown-types` pour lister les dossiers avec les fichiers
+  non soutenus.
+* Ajouté l'appui pour calculer les bitrates des fichiers AAC.
+* Ajouté une balise de sortie `[V]` qui affiche l'information du encodeur
+  (actuellement seulement pour MP3).
+* Corrigé le traitement des MP3 avec l'en-tête VBRI (par ex. fait par
+  Fraunhofer).
+* Nettoyé les messages d'aide.
+* Supprimé l'appui pour Python 2.2.
+
+
+Développement
+-------------
+
+Le stockage officiel de développement peut être trouvé à
+<http://bitheap.org/hg/dnuos>. Avec [Mercurial][], exécutez :
+
+    hg clone http://bitheap.org/hg/dnuos/
+
+Exécuter l'ensemble des tests unitaires exige les [données de test][] (dans
+le même dossier que `setup.py`). Après que vous l'avez, vous pouvez
+exécuter les tests avec la commande suivante :
+
+    python setup.py test
+
+Si vous trouvez aucun de problèmes, soumettez une fiche sur le [site Trac][].
+Ce site est pour le développement et non pas d'assistance, donc ne soumettez
+pas de fiches d'assistance.
+
+[Mercurial]: http://www.selenic.com/mercurial/
+[données de test]: http://bitheap.org/dnuos/files/testdata.zip
+[site Trac]: http://bitheap.org/dnuos/trac/
+
+
+Contacter
+---------
+
+* [Brodie Rao](mailto:me+dnuos à dackz point net) - Mainteneur du projet
+
+### Contributeurs Passés
+
+* [Mattias Päivärinta](mailto:pejve à vasteras2 point net)
+* frunksock
