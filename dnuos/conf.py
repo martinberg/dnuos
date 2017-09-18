@@ -265,6 +265,7 @@ def parse_args(argv=sys.argv):
                         list_files=False,
                         merge=False,
                         mp3_min_bit_rate=0,
+			mp3_max_bit_rate=0,
                         no_cbr=False,
                         no_mixed=False,
                         no_non_profile=False,
