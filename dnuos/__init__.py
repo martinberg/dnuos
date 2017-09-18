@@ -85,6 +85,9 @@ def prepare_listing(dir_pairs, options, data):
     if options.mp3_min_bit_rate != 0:
         dir_pairs = ifilter(enough_bitrate_mp3(options.mp3_min_bit_rate),
                             dir_pairs)
+    if options.mp3_max_bit_rate != 0:
+        dir_pairs = ifilter(to_little_bitrate_mp3(options.mp3_max_bit_rate),
+                            dir_pairs)
     if options.output_module == dnuos.output.db:
         output_db_predicate = make_output_db_predicate(options)
         dir_pairs = ifilter(output_db_predicate, dir_pairs)

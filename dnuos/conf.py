@@ -146,6 +146,12 @@ def set_mp3_min_bitrate(option, opt_str, value, parser):
     else:
         raise OptionValueError(_('Bitrate must be 0 or in the range (1..320)'))
 
+def set_mp3_max_bitrate(option, opt_str, value, parser):
+
+    if value >= 0 and value <= 320:
+        parser.values.mp3_max_bit_rate = 1000 * value
+    else:
+        raise OptionValueError(_('Bitrate must be 0 or in the range (1..320)'))
 
 def set_output_module(option, opt_str, value, parser):
 
