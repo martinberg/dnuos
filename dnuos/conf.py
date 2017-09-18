@@ -349,6 +349,11 @@ def parse_args(argv=sys.argv):
     parser.add_option_group(group)
 
     group = OptionGroup(parser, _('Filtering'))
+    group.add_option("-U", "--max-bitrate",
+                     action="callback", nargs=1,
+                     callback=set_mp3_max_bitrate, type="int",
+                     help=_('Include MP3s with bitrate lower than MAX '
+                     '(in Kbps)'), metavar=_('MAX'))
     group.add_option("-b", "--bitrate",
                      action="callback", nargs=1,
                      callback=set_mp3_min_bitrate, type="int",

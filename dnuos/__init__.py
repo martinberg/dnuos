@@ -340,6 +340,13 @@ def enough_bitrate_mp3(mp3_min_bit_rate):
     return lambda (adir, root): (adir.mediatype != "MP3" or
                                  adir.bitrate >= mp3_min_bit_rate)
 
+def to_little_bitrate_mp3(mp3_max_bit_rate):
+    """Create max-bitrate MP3 predicate"""
+
+    # This implementation does not consider low-bitrate MP3s in Mixed dirs
+    return lambda (adir, root): (adir.mediatype != "MP3" or
+                                 adir.bitrate <= mp3_max_bit_rate)
+
 
 def make_output_db_predicate(options):
     """Predicate for whether something should be included in output.db"""
